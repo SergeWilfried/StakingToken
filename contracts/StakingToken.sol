@@ -47,9 +47,13 @@ contract StakingToken is ERC20, Ownable {
     function createStake(uint256 _stake)
         public
     {
-        _burn(msg.sender, _stake);
+        require(balanceOf(msg.sender) >= _stake, "staking amount is more than balance");
+
         if(stakes[msg.sender] == 0) addStakeholder(msg.sender);
+        
+        transfer(address(this), _stake);
         stakes[msg.sender] = stakes[msg.sender].add(_stake);
+
     }
 
     /**
@@ -59,9 +63,10 @@ contract StakingToken is ERC20, Ownable {
     function removeStake(uint256 _stake)
         public
     {
+        require(stakes[msg.sender] >= _stake, "staked amount is less than withdrawl amount");
         stakes[msg.sender] = stakes[msg.sender].sub(_stake);
         if(stakes[msg.sender] == 0) removeStakeholder(msg.sender);
-        _mint(msg.sender, _stake);
+        _transfer(address(this), msg.sender, _stake);
     }
 
     /**

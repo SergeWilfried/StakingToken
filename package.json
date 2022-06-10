@@ -11,7 +11,7 @@
   },
   "scripts": {
     "deploy:ganache": "truffle deploy --network development",
-    "start:ganache:dev": "ganache-cli -m \"width whip dream dress captain vessel mix drive oxygen broken soap bone\" -p 8545 -i 201903 --debug",
+    "start:ganache:dev": "ganache-cli -m \"width whip dream dress captain vessel mix drive oxygen broken soap bone\" -p 8545 -i 201903",
     "test": "truffle test --network test",
     "lint:sol": "solium -d contracts",
     "lint:js": "eslint *.js .",
@@ -25,6 +25,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "bignumber.js": "8.0.2",
+    "ganache": "^7.3.0",
     "openzeppelin-solidity": "2.2.0"
   },
   "devDependencies": {
